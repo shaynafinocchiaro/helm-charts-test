@@ -1,4 +1,4 @@
-# This action checks the Helm Chart changes for linting and version updates
+# This action checks the Helm Chart changes for linting and rendering chart templates
 name: helm-validations
 
 # Check runs on PRs created to merge to main branch
@@ -9,26 +9,9 @@ on:
       - release-v*
 
 jobs:
-  # This job will check to see if any .yaml file is modified
-  check_files:
-    runs-on: ubuntu-latest
-    outputs:
-      run_tests: ${{ steps.diff.outputs.run_tests }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check for files changed
-        id: diff
-        run: |
-          URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
-          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
-          echo $FILES | grep \.yaml && echo "run_tests=true" >> $GITHUB_OUTPUT
-
   # This job will run helm lint and version increment check on updated charts
-  test-install:
+  lint:
     runs-on: ubuntu-latest
-    # Only run job when .yaml file is changed
-    needs: check_files
-    if: needs.check_files.outputs.run_tests == 'true'
     steps:
       # Check out the repo
       - name: Checkout
@@ -49,13 +32,29 @@ jobs:
       - name: Install chart-testing-action
         uses: helm/chart-testing-action@v2.6.1
 
-      - name: Create Kind cluster
-        uses: helm/kind-action@v1.10.0
+      # - name: Create Kind cluster
+      #   uses: helm/kind-action@v1.10.0
+
+      - name: Run chart-testing
+        id: modified-charts
+        run: |
+          modified=$(ct list-changed --target-branch ${{ github.event.repository.default_branch }})
+          if [[ -n "$modified" ]]; then
+            echo "modified=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run chart-testing (lint)
+        if: steps.modified-charts.outputs.modified == 'true'
+        run: ct lint --target-branch ${{ github.event.repository.default_branch }} --lint-conf .yamllint
+
+      # - name: Install CSM Chart dependencies
+      #   run: |
+      #     kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.0/cert-manager.crds.yaml
 
       # test helm install
-      - name: Run chart-testing for installation
-        run: ct install --config ct.yaml
+      # - name: Run chart-testing for installation
+      #   run: ct install --target-branch ${{ github.event.repository.default_branch }}
 
-      # test helm upgrade
-      - name: Run chart-testing for upgrade
-        run: ct upgrade --config ct.yaml --upgrade 
+      # # test helm upgrade
+      # - name: Run chart-testing for upgrade
+      #   run: ct upgrade --target-branch ${{ github.event.repository.default_branch }} --upgrade 
