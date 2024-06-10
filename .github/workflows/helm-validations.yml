@@ -54,8 +54,8 @@ jobs:
 
       # test helm install
       - name: Run chart-testing for installation
-        run: ct install --target-branch ${{ github.event.repository.default_branch }}
+        run: ct install --config ct.yaml
 
       # test helm upgrade
       - name: Run chart-testing for upgrade
-        run: ct upgrade --target-branch ${{ github.event.repository.default_branch }} --upgrade 
+        run: ct upgrade --config ct.yaml --upgrade 
