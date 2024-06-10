@@ -44,7 +44,7 @@ jobs:
             echo "modified=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Run chart-testing (lint)
+      - name: Run chart linter
         if: steps.modified-charts.outputs.modified == 'true'
         run: ct lint --config ct.yaml
 
