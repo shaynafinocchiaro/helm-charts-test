@@ -1,0 +1,11 @@
+# See https://github.com/helm/chart-testing#configuration
+remote: origin
+target-branch:
+  - main
+chart-dirs:
+  - charts
+  - installation-wizard
+chart-repos:
+  - cert-manager=https://charts.jetstack.io
+  - velero=https://vmware-tanzu.github.io/helm-charts
+  - ingress-nginx=https://kubernetes.github.io/ingress-nginx
