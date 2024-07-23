@@ -57,6 +57,7 @@ spec:
       containers:
       - name: karavi-topology
         image: {{ .Values.karaviTopology.image }}
+        imagePullPolicy: Always
         resources: {}
         env:
         - name: PORT

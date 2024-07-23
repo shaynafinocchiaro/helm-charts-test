@@ -51,6 +51,7 @@ spec:
       containers:
       - name: karavi-metrics-powermax
         image: {{ .Values.karaviMetricsPowermax.image }}
+        imagePullPolicy: Always
         resources: {}
         env:
         - name: POWERMAX_METRICS_ENDPOINT

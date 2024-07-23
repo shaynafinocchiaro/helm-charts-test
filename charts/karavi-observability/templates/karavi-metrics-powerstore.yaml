@@ -45,6 +45,7 @@ spec:
       containers:
       - name: karavi-metrics-powerstore
         image: {{ .Values.karaviMetricsPowerstore.image }}
+        imagePullPolicy: Always
         resources: {}
         env:
         - name: POWERSTORE_METRICS_ENDPOINT	

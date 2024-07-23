@@ -51,6 +51,7 @@ spec:
       containers:
       - name: karavi-metrics-powerscale
         image: {{ .Values.karaviMetricsPowerscale.image }}
+        imagePullPolicy: Always
         resources: {}
         env:
         - name: POWERSCALE_METRICS_ENDPOINT	

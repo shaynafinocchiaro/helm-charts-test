@@ -51,6 +51,7 @@ spec:
       containers:
       - name: karavi-metrics-powerflex
         image: {{ .Values.karaviMetricsPowerflex.image }}
+        imagePullPolicy: Always
         resources: {}
         env:
         - name: POWERFLEX_METRICS_ENDPOINT	
