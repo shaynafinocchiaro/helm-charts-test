@@ -1546,6 +1546,28 @@ entries:
     version: 0.1.0
   csm-authorization:
   - apiVersion: v2
+    appVersion: v2.0.0-alpha
+    created: "2024-07-31T19:18:29.874986082Z"
+    dependencies:
+    - condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: 1.10.0
+    - condition: nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.0.19
+    description: 'CSM for Authorization is part of the [Container Storage Modules](https://github.com/dell/csm)
+      open source suite of Kubernetes storage enablers for Dell EMC storage products.  CSM
+      for Authorization provides storage and Kubernetes administrators the ability
+      to apply RBAC for Dell CSI Drivers. '
+    digest: f8799d3cf9487cf8780959dbec02a1e77222dee586f169090474b5ee617be05b
+    name: csm-authorization
+    type: application
+    urls:
+    - https://github.com/shaynafinocchiaro/helm-charts-test/releases/download/csm-authorization-v2.0.0-alpha/csm-authorization-v2.0.0-alpha.tgz
+    version: v2.0.0-alpha
+  - apiVersion: v2
     appVersion: 1.11.0
     created: "2024-07-30T12:58:46.092615066Z"
     dependencies:
@@ -2311,4 +2333,4 @@ entries:
     urls:
     - https://github.com/dell/helm-charts/releases/download/karavi-topology-0.1.0/karavi-topology-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-30T13:31:14.559457126Z"
+generated: "2024-07-31T19:18:29.87524269Z"
