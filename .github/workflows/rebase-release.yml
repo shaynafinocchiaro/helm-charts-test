@@ -32,8 +32,8 @@ jobs:
 
       - name: Rebase release branch with main
         run: |
-          echo "target-branch=release-v1.12.0" >> $GITHUB_ENV
-          RELEASE_BRANCH=${target-branch}
+          echo "release-test=release-v1.12.0" >> $GITHUB_ENV
+          RELEASE_BRANCH=${release-test}
           git checkout $RELEASE_BRANCH
           git rebase origin/main
           git push --force-with-lease origin $RELEASE_BRANCH
