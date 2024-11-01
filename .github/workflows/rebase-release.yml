@@ -18,7 +18,7 @@ jobs:
   rebase-branch:
     runs-on: ubuntu-latest
     env:
-      target-branch: "release-v1.12.0"
+      target-branch: ""
 
     steps:
       - name: Checkout repository
