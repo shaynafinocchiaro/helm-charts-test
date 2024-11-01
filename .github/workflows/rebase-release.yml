@@ -30,7 +30,7 @@ jobs:
       - name: Rebase release branch with main
         run: |
           git checkout ${{ env.target-branch }}
-          git rebase origin/main
+          git rebase main
 
       - name: Push rebase changes to new branch
         run: |
