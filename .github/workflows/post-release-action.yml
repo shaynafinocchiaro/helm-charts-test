@@ -6,6 +6,7 @@
 #
 #  http://www.apache.org/licenses/LICENSE-2.0
 
+# This Github action updates the target-branch references for dependabot and other actions
 name: Post Release Action
 
 on:
