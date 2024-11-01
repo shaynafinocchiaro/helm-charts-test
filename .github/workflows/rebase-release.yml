@@ -10,7 +10,6 @@
 name: Rebase release
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -25,19 +24,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
       - name: Fetch all branches
         run: git fetch --all
 
       - name: Rebase release branch with main
         run: |
-          git checkout ${target-branch}
+          git checkout ${{ env.target-branch }}
           git rebase origin/main
-          git push --force-with-lease origin ${target-branch}
+
+      - name: Push rebase changes to new branch
+        run: |
+          git checkout -b rebase-feature-branch
+          git push origin rebase-feature-branch
 
       # Needed for signing commits using Github App tokens
       # See: https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#commit-signing
@@ -51,8 +49,8 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          branch: $RELEASE_BRANCH
-          base: main
+          branch: rebase-feature-branch
+          base: ${{ env.target-branch }}
           title: 'Rebase release branch with main'
           body: |
             This PR rebases the release branch with the main branch.
