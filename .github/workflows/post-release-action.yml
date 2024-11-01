@@ -26,7 +26,7 @@ jobs:
       - name: Update branch references
         run: |
           BRANCH_NAME=${{ github.event.inputs.branch_name }}
-          grep -rl 'target-branch:' . | xargs sed -i "s/target-branch: \".*\"/target-branch: \"${NEW_BRANCH}\"/g"
+          grep -rl 'target-branch:' . | xargs sed -i "s/target-branch: \".*\"/target-branch: \"${BRANCH_NAME}\"/g"
 
       # Needed for signing commits using Github App tokens
       # See: https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#commit-signing
@@ -61,7 +61,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number
-              title: 'Update target-branch references'
           });
           if (pr.data.merged) {
               return 'merged';
