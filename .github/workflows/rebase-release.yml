@@ -99,7 +99,8 @@ jobs:
             const issueTitle = `Rebase conflict on feature-branch`;
             const issueBody = `There was a conflict rebasing the feature branch onto main. Please resolve the conflicts manually.`;
             await github.rest.issues.create({
-              ...context.repo,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               title: issueTitle,
               body: issueBody,
               assignees: [author],
