@@ -10,6 +10,7 @@
 name: Rebase release
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -34,9 +35,9 @@ jobs:
 
       - name: Rebase release branch with main
         run: |
-          git checkout $target-branch
+          git checkout ${target-branch}
           git rebase origin/main
-          git push --force-with-lease origin $target-branch
+          git push --force-with-lease origin ${target-branch}
 
       # Needed for signing commits using Github App tokens
       # See: https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#commit-signing
