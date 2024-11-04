@@ -76,7 +76,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const pr = await github.pulls.list({
+            const pr = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'closed',
@@ -96,7 +96,7 @@ jobs:
             const author = '${{ steps.get_pr_author.outputs.author }}';
             const issueTitle = `Rebase conflict on feature-branch`;
             const issueBody = `There was a conflict rebasing the feature branch onto main. Please resolve the conflicts manually.`;
-            await github.issues.create({
+            await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: issueTitle,
