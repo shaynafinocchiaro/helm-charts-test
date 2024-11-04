@@ -53,7 +53,7 @@ jobs:
           private-key: ${{ secrets.CSM_RELEASE_APP_PRIVATE_KEY }}
 
       - name: Create pull request
-        if: env.rebase_failed != 'true'
+        if: ${{ env.rebase_failed }} != 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ steps.generate-token.outputs.token }}
