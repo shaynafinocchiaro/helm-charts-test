@@ -34,6 +34,9 @@ jobs:
           git checkout ${{ env.target-branch }}
           git rebase main || echo "rebase_failed=true" >> $GITHUB_ENV
 
+      - name: Debug rebase status
+        run: echo "Rebase failed: ${{ env.rebase_failed }}"
+
       - name: Check for rebase conflicts
         run: |
           if [ -d .git/rebase-apply ] || [ -d .git/rebase-merge ]; then
