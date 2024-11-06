@@ -92,13 +92,11 @@ jobs:
             core.setOutput('author', author);
             console.log(`Author: ${author}`);
 
-            return { author };
-
       - name: Set PR author output
         if: ${{ failure() && steps.rebase.outcome == 'failure' }}
         run: |
-          echo "PR_AUTHOR=${{ steps.get_last_pr.outputs.author }}"
-          echo "PR_AUTHOR=${{ steps.get_last_pr.outputs.author }}" >> $GITHUB_ENV
+          echo "PR_AUTHOR=${{ steps.get_pr_author.outputs.author }}"
+          echo "PR_AUTHOR=${{ steps.get_pr_author.outputs.author }}" >> $GITHUB_ENV
 
       - name: Create issue for rebase conflict
         if: ${{ failure() && steps.rebase.outcome == 'failure' }}
