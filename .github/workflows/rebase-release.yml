@@ -95,7 +95,6 @@ jobs:
       - name: Set PR author output
         if: ${{ failure() && steps.rebase.outcome == 'failure' }}
         run: |
-          echo "PR_AUTHOR=${{ steps.get_pr_author.outputs.author }}"
           echo "PR_AUTHOR=${{ steps.get_pr_author.outputs.author }}" >> $GITHUB_ENV
 
       - name: Create issue for rebase conflict
@@ -109,7 +108,7 @@ jobs:
             }
 
             const issueTitle = `Rebase conflict on ${{ env.target-branch }} branch`;
-            const issueBody = `There was a conflict rebasing the ${{ env.target-branch }} branch onto main. Please resolve the conflicts manually.`;
+            const issueBody = `There was a conflict rebasing the ${{ env.target-branch }} branch onto main. Please resolve the conflicts manually. See [Sync Release Branch with Main action](https://github.com/shaynafinocchiaro/helm-charts-test/actions/workflows/rebase-release.yml) for more details.`;
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
