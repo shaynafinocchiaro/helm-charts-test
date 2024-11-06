@@ -7,7 +7,7 @@ version: 2
 updates:
   # github actions
   - package-ecosystem: "github-actions"
-    target-branch: "release-v1.13.0"
+    target-branch: "release-v1.15.0"
     directory: "/"
     schedule:
       # Check for updates to GitHub Actions every week
