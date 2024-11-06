@@ -663,6 +663,26 @@ entries:
   csi-isilon:
   - apiVersion: v2
     appVersion: 2.12.0
+    created: "2024-11-06T19:32:38.392314135Z"
+    description: 'PowerScale CSI (Container Storage Interface) driver Kubernetes integration.
+      This chart includes everything required to provision via CSI as well as an Isilon
+      StorageClass. '
+    digest: b4bc907e192bb032a702de87056b675a45f7a79764f26655198a321e3a0ce31c
+    keywords:
+    - csi
+    - storage
+    kubeVersion: '>= 1.21.0'
+    maintainers:
+    - name: DellEMC
+    name: csi-isilon
+    sources:
+    - https://github.com/dell/csi-isilon
+    type: application
+    urls:
+    - https://github.com/shaynafinocchiaro/helm-charts-test/releases/download/csi-isilon-2.13.0/csi-isilon-2.13.0.tgz
+    version: 2.13.0
+  - apiVersion: v2
+    appVersion: 2.12.0
     created: "2024-11-01T14:15:44.42799139Z"
     description: 'PowerScale CSI (Container Storage Interface) driver Kubernetes integration.
       This chart includes everything required to provision via CSI as well as an Isilon
@@ -2697,4 +2717,4 @@ entries:
     urls:
     - https://github.com/dell/helm-charts/releases/download/karavi-topology-0.1.0/karavi-topology-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-01T14:16:45.335971881Z"
+generated: "2024-11-06T19:32:38.484524309Z"
