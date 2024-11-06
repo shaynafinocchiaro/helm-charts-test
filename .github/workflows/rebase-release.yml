@@ -35,7 +35,8 @@ jobs:
           git rebase main || echo "rebase_failed=true" >> $GITHUB_ENV
 
       - name: Debug rebase status
-        run: echo "Rebase failed: ${{ env.rebase_failed }}"
+        run: |
+          echo "Rebase failed: ${{ env.rebase_failed }}"
 
       - name: Check for rebase conflicts
         run: |
