@@ -89,6 +89,7 @@ jobs:
               throw new Error('No author found.');
             }
             core.setOutput('author', author);
+            return author;
             console.log(`Author: ${author}`);
 
       - name: Set PR author output
