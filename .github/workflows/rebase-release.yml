@@ -34,9 +34,9 @@ jobs:
         run: |
           git checkout ${{ env.target-branch }}
           git rebase main
-          
+
       - name: Push rebase changes to new branch
-        if: steps.rebase.outcome == 'success'
+        if: ${{ success() && steps.rebase.outcome == 'success' }}
         run: |
           git checkout -b rebase-feature-branch
           git push origin rebase-feature-branch
@@ -45,13 +45,13 @@ jobs:
       # See: https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#commit-signing
       - uses: actions/create-github-app-token@v1.11.0
         id: generate-token
-        if: steps.rebase.outcome == 'success'
+        if: ${{ success() && steps.rebase.outcome == 'success' }}
         with:
           app-id: ${{ vars.CSM_RELEASE_APP_ID }}
           private-key: ${{ secrets.CSM_RELEASE_APP_PRIVATE_KEY }}
 
       - name: Create pull request
-        if: steps.rebase.outcome == 'success'
+        if: ${{ success() && steps.rebase.outcome == 'success' }}
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ steps.generate-token.outputs.token }}
@@ -65,7 +65,7 @@ jobs:
           commit-message: "Rebase release branch with main"
 
       - name: Get PR author
-        if: steps.rebase.outcome == 'failure'
+        if: ${{ failure() && steps.rebase.outcome == 'failure' }}
         id: get_pr_author
         uses: actions/github-script@v7
         with:
@@ -83,7 +83,7 @@ jobs:
             return { author };
 
       - name: Create issue for rebase conflict
-        if: steps.rebase.outcome == 'failure'
+        if: ${{ failure() && steps.rebase.outcome == 'failure' }}
         uses: actions/github-script@v7
         with:
           script: |
