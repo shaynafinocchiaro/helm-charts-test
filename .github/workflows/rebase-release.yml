@@ -108,8 +108,8 @@ jobs:
             throw new Error('PR_AUTHOR environment variable is not set.');
             }
 
-            const issueTitle = `Rebase conflict on feature-branch`;
-            const issueBody = `There was a conflict rebasing the feature branch onto main. Please resolve the conflicts manually.`;
+            const issueTitle = `Rebase conflict on ${{ env.target-branch }} branch`;
+            const issueBody = `There was a conflict rebasing the ${{ env.target-branch }} branch onto main. Please resolve the conflicts manually.`;
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
