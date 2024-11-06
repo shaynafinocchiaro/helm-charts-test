@@ -46,7 +46,7 @@ jobs:
           fi
 
       - name: Push rebase changes to new branch
-        if: ${{ env.rebase_failed }} != 'true'
+        if: ${{ env.rebase_failed }} != true
         run: |
           git checkout -b rebase-feature-branch
           git push origin rebase-feature-branch
@@ -60,7 +60,7 @@ jobs:
           private-key: ${{ secrets.CSM_RELEASE_APP_PRIVATE_KEY }}
 
       - name: Create pull request
-        if: ${{ env.rebase_failed }} != 'true'
+        if: ${{ env.rebase_failed }} != true
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ steps.generate-token.outputs.token }}
@@ -74,7 +74,7 @@ jobs:
           commit-message: "Rebase release branch with main"
 
       - name: Get PR author
-        if: ${{ env.rebase_failed }} == 'true'
+        if: ${{ env.rebase_failed }} == true
         id: get_pr_author
         uses: actions/github-script@v7
         with:
@@ -92,7 +92,7 @@ jobs:
             return { author };
 
       - name: Create issue for rebase conflict
-        if: ${{ env.rebase_failed }} == 'true'
+        if: ${{ env.rebase_failed }} == true
         uses: actions/github-script@v7
         with:
           script: |
