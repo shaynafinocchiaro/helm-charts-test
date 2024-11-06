@@ -8,7 +8,7 @@ You may obtain a copy of the License at
     http://www.apache.org/licenses/LICENSE-2.0
 -->
 
-# Dell Community Kubernetes Helm Charts
+# Dell Community Kubernetes Helm Charts      
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](docs/CODE_OF_CONDUCT.md)
 [![License](https://img.shields.io/github/license/dell/helm-charts)](LICENSE)
