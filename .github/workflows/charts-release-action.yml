@@ -1,11 +1,9 @@
 # This Github action will create a Github release for updated helm-charts
 name: charts-release-action
 
-# Triggers the action on push/merge to the main branch
+# Invocable as a manual workflow
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   # This job will perform a helm release of all the csm charts that have been updated
