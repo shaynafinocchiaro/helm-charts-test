@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
       - name: Configure Git
         run: |
@@ -29,7 +30,7 @@ jobs:
         run: |
           branch_name=release-v${{ inputs.version }}
 
-          if git show-ref --verify --quiet refs/heads/$branch_name; then
+          if git ls-remote --heads origin $branch_name; then
             echo "Branch $branch_name already exists. Skipping creation."
           else
             git checkout -b $branch_name
