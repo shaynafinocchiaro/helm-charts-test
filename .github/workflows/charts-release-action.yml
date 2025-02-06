@@ -27,8 +27,14 @@ jobs:
 
       - name: Create release branch
         run: |
-          git checkout -b release-v${{ inputs.version }}
-          git push origin release-v${{ inputs.version }}
+          branch_name=release-v${{ inputs.version }}
+
+          if git show-ref --verify --quiet refs/heads/$branch_name; then
+            echo "Branch $branch_name already exists. Skipping creation."
+          else
+            git checkout -b $branch_name
+            git push origin $branch_name
+          fi
 
      # Run the helm chart release command
       - name: Run csm chart-releaser
