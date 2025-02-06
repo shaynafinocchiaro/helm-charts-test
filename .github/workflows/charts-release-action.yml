@@ -4,6 +4,10 @@ name: charts-release-action
 # Invocable as a manual workflow
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version. E.g. 1.14.0'
+        required: true
 
 jobs:
   # This job will perform a helm release of all the csm charts that have been updated
@@ -20,6 +24,11 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Create release branch
+        run: |
+          git checkout -b release-v${{ inputs.version }}
+          git push origin release-v${{ inputs.version }}
 
      # Run the helm chart release command
       - name: Run csm chart-releaser
