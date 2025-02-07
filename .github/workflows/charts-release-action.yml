@@ -39,7 +39,7 @@ jobs:
           branch_name=release-v${{ inputs.version }}
 
           git fetch origin
-          if git ls-remote --heads origin $branch_name; then
+          if git ls-remote --heads origin $branch_name | grep $branch_name; then
             echo "Branch $branch_name already exists. Skipping creation."
           else
             git checkout -b $branch_name
