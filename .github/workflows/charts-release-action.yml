@@ -42,7 +42,7 @@ jobs:
           if git ls-remote --heads origin $branch_name | grep $branch_name; then
             echo "Branch $branch_name already exists. Skipping creation."
           else
-            git checkout -b $branch_name
+            git branch $branch_name
             git push origin $branch_name
           fi
 
