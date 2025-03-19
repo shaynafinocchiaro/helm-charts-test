@@ -33,6 +33,10 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Set branch name for install wizard release action
+        run: |
+          echo "branch_name=release-v${{ inputs.version }}" >> $GITHUB_OUPUT
+
       - name: Create release branch
         # Branch name should already exist for patch releases
         run: |
