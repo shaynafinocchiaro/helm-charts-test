@@ -1,7 +1,7 @@
 apiVersion: v2
 name: csm-authorization
-version: v3.5.0
-appVersion: v3.5.0
+version: v3.6.0
+appVersion: v3.6.0
 type: application
 description: |
   CSM for Authorization is part of the [Container Storage Modules](https://github.com/dell/csm) open source suite of Kubernetes
