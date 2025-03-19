@@ -17,6 +17,9 @@ on:
     types:
       - completed
 
+permissions:
+  actions: read
+
 jobs:
   # This job will perform a helm release of the installation wizard chart if it has been updated
   release-installation-wizard:
@@ -40,7 +43,7 @@ jobs:
           name: branch_name
           path: .
           run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.TEST_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Read release branch name
         run: |
