@@ -1633,6 +1633,25 @@ entries:
     version: 2.7.0
   csi-vxflexos:
   - apiVersion: v2
+    appVersion: 2.15.0
+    created: "2025-03-19T19:51:16.308947288Z"
+    description: 'VxFlex OS CSI (Container Storage Interface) driver Kubernetes integration.
+      This chart includes everything required to provision via CSI as well as a VxFlex
+      OS StorageClass. '
+    digest: 8291c63feab74f2c686417332fa88a8df53dae68e226104a9f3964a6b9f8abac
+    keywords:
+    - csi
+    - storage
+    kubeVersion: '>= 1.21.0'
+    maintainers:
+    - name: DellEMC
+    name: csi-vxflexos
+    sources:
+    - https://github.com/dell/csi-vxflexos
+    urls:
+    - https://github.com/shaynafinocchiaro/helm-charts-test/releases/download/csi-vxflexos-2.15.0/csi-vxflexos-2.15.0.tgz
+    version: 2.15.0
+  - apiVersion: v2
     appVersion: 2.14.0
     created: "2025-03-19T15:08:46.962895741Z"
     description: 'VxFlex OS CSI (Container Storage Interface) driver Kubernetes integration.
@@ -3321,4 +3340,4 @@ entries:
     urls:
     - https://github.com/dell/helm-charts/releases/download/karavi-topology-0.1.0/karavi-topology-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-19T19:40:40.035989139Z"
+generated: "2025-03-19T19:51:16.309334173Z"
