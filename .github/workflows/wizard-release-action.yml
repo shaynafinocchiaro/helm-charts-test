@@ -38,6 +38,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: branch_name
+          path: branch_name.txt
 
       - name: Read release branch name
         run: |
