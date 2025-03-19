@@ -39,6 +39,8 @@ jobs:
         with:
           name: branch_name
           path: branch_name.txt
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Read release branch name
         run: |
