@@ -34,10 +34,18 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Download release branch name artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: branch_name
+
+      - name: Read release branch name
+        run: |
+          echo "branch_name=$(cat branch_name.txt)" >> $GITHUB_ENV
+
       - name: Checkout release branch
         run: |
-          git fetch origin
-          git checkout ${{ github.event.workflow_run.outputs.branch_name }}
+          git checkout ${{ env.branch_name }}
 
       # Run the helm chart release command
       - name: Run csm chart-releaser for container-storage-modules
