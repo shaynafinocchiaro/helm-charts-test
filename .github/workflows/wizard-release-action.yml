@@ -37,12 +37,19 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Get id from Release Helm Charts workflow
+        id: run-id
+        run: |
+          latest_run_id=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/actions/workflows/Release%20Helm%20Charts/runs?status=success&per_page=1 | jq -r '.workflow_runs[0].id')
+          echo "run_id=$latest_run_id" >> $GITHUB_OUTPUT
+
       - name: Download release branch name artifact
         uses: actions/download-artifact@v4
         with:
           name: branch_name
           path: .
-          run-id: ${{ github.event.workflow_run.id }}
+          run-id: ${{ steps.run-id.outputs.run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Read release branch name
