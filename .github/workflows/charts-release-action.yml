@@ -36,6 +36,7 @@ jobs:
       - name: Set branch name for install wizard release action
         run: |
           echo "release-v${{ inputs.version }}" >> branch_name.txt
+          echo "workflow_run_id=${{ github.run_id }}"
 
       - name: Upload branch name artifact
         uses: actions/upload-artifact@v4
