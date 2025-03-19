@@ -35,7 +35,7 @@ jobs:
 
       - name: Set branch name for install wizard release action
         run: |
-          echo "branch_name=release-v${{ inputs.version }}" >> $GITHUB_OUPUT
+          echo "branch_name=release-v${{ inputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Create release branch
         # Branch name should already exist for patch releases
