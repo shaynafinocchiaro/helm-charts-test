@@ -35,7 +35,7 @@ jobs:
 
       - name: Set branch name for install wizard release action
         run: |
-          echo "branch_name=release-v${{ inputs.version }}" >> branch_name.txt
+          echo "release-v${{ inputs.version }}" >> branch_name.txt
 
       - name: Upload branch name artifact
         uses: actions/upload-artifact@v4
