@@ -67,5 +67,5 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
-          charts_dir: installation-wizard
+          charts_dir: container-storage-modules
           skip_existing: true
