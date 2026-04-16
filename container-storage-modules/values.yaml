@@ -20,11 +20,11 @@
 ########################
 csi-powerstore:
   enabled: false
-  version: "v2.17.0"
+  version: "v2.18.0"
   images:
     # "driver" defines the container image, used for the driver container.
     driver:
-      image: quay.io/dell/container-storage-modules/csi-powerstore:v2.16.0
+      image: quay.io/dell/container-storage-modules/csi-powerstore:v2.18.0
     # CSI sidecars
     attacher:
       image: registry.k8s.io/sig-storage/csi-attacher:v4.11.0
